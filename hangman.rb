@@ -19,6 +19,7 @@ class Hangman
       @guessed_letters_list << letter
       puts "Good guess"
       word_check(word)
+      won?(word, @guessed_letters_list)
     else
       puts "Try again!"
     end
@@ -35,7 +36,14 @@ class Hangman
     puts "The word is #{length} letters in length."
     puts "#{blank_word}"
   end
-
+  
+  def won?(word, letter_list)
+    split_word = word.split('')
+    if split_word.all? { |letters| letter_list.include?(letters)}
+      puts "Winner"
+      exit(0)
+    end
+  end
   
   private
   
