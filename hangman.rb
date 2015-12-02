@@ -8,9 +8,18 @@ class Hangman
     array_words.sample
   end
   
-  def guess(word)
+  def user_input
     puts "Guess a letter: "
     letter = gets.chomp
+    letter
+  end
+  
+  def guess(word)
+    letter = user_input
+    if letter.length > 1
+      puts "One leter at a time..."
+      letter = user_input
+    end
     letter_check(word, letter)
   end
   
@@ -21,7 +30,7 @@ class Hangman
       word_check(word)
       won?(word, @guessed_letters_list)
     else
-      puts "Try again!"
+      puts "Nope, Try again!"
     end
   end
   
@@ -37,6 +46,8 @@ class Hangman
     puts "#{blank_word}"
   end
   
+  private
+  
   def won?(word, letter_list)
     split_word = word.split('')
     if split_word.all? { |letters| letter_list.include?(letters)}
@@ -44,8 +55,6 @@ class Hangman
       exit(0)
     end
   end
-  
-  private
   
   def each_guessed_letter(array_guessed_letters)
     array_guessed_letters.each { |letter| return letter}
