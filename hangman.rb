@@ -68,8 +68,13 @@ class Hangman
 end
 
 hangman = Hangman.new
-word = hangman.random_word(['hello','love'])
+word = hangman.random_word(['hello','love', 'friend', 'animal', 'soldier'])
 hangman.display_word_length(word)
 loop do
   hangman.guess(word)
 end
+
+
+
+
+
