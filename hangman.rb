@@ -21,6 +21,13 @@ class Hangman
     end
   end
   
+  def display_word_length(word)
+    blank_word = word.gsub(/[a-z]/, ' _ ')
+    length = word.length
+    puts "The word is #{length} letters in length."
+    puts "#{blank_word}"
+  end
+  
   private
   
   def each_guessed_letter(array_guessed_letters)
@@ -36,6 +43,7 @@ end
 
 hangman = Hangman.new
 word = hangman.random_word(['hello','love'])
+hangman.display_word_length(word)
 loop do
   hangman.guess(word)
 end
