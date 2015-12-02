@@ -11,14 +11,22 @@ class Hangman
   def guess(word)
     puts "Guess a letter: "
     letter = gets.chomp
-    @guessed_letters_list << letter
-    
-    if word.include?(each_guessed_letter(@guessed_letters_list))
-      puts "Nice guess."
-      display_word(word, @guessed_letters_list)
+    letter_check(word, letter)
+  end
+  
+  def letter_check(word, letter)
+    if word.include?(letter)
+      @guessed_letters_list << letter
+      puts "Good guess"
+      word_check(word)
     else
-      puts "Guess again!"
+      puts "Try again!"
     end
+  end
+  
+  def word_check(word)
+    word.include?(each_guessed_letter(@guessed_letters_list))
+    display_word(word, @guessed_letters_list)
   end
   
   def display_word_length(word)
@@ -27,6 +35,7 @@ class Hangman
     puts "The word is #{length} letters in length."
     puts "#{blank_word}"
   end
+
   
   private
   
